@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 25% 96%;
+    --foreground: 350 40% 12%;
+
+    --card: 30 20% 94%;
+    --card-foreground: 350 40% 12%;
+
+    --popover: 30 25% 96%;
+    --popover-foreground: 350 40% 12%;
+
+    --primary: 350 55% 22%;
+    --primary-foreground: 30 25% 96%;
+
+    --secondary: 30 20% 88%;
+    --secondary-foreground: 350 40% 12%;
+
+    --muted: 30 15% 90%;
+    --muted-foreground: 350 15% 45%;
+
+    --accent: 0 78% 48%;
+    --accent-foreground: 30 25% 96%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 30 15% 85%;
+    --input: 30 15% 85%;
+    --ring: 350 55% 22%;
+
+    --radius: 0.5rem;
+
+    --sand: 35 30% 92%;
+    --sand-dark: 30 20% 82%;
+    --maroon-deep: 350 60% 15%;
+    --maroon-light: 350 45% 30%;
+    --red-vibrant: 0 78% 48%;
+    --red-glow: 8 85% 55%;
+    --warm-cream: 38 40% 95%;
+
+    --sidebar-background: 350 55% 18%;
+    --sidebar-foreground: 30 25% 96%;
+    --sidebar-primary: 0 78% 48%;
+    --sidebar-primary-foreground: 30 25% 96%;
+    --sidebar-accent: 350 45% 25%;
+    --sidebar-accent-foreground: 30 25% 96%;
+    --sidebar-border: 350 40% 22%;
+    --sidebar-ring: 0 78% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .text-gradient-hero {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+  }
+
+  .bg-maroon-deep {
+    background-color: hsl(var(--maroon-deep));
+  }
+
+  .bg-warm-cream {
+    background-color: hsl(var(--warm-cream));
+  }
+
+  .bg-sand {
+    background-color: hsl(var(--sand));
+  }
+
+  .text-sand {
+    color: hsl(var(--sand));
+  }
+
+  .text-red-vibrant {
+    color: hsl(var(--red-vibrant));
+  }
+
+  .bg-gradient-maroon {
+    background: linear-gradient(180deg, hsl(var(--maroon-deep)) 0%, hsl(var(--primary)) 100%);
+  }
+
+  .bg-gradient-hero {
+    background: linear-gradient(135deg, hsl(var(--maroon-deep)) 0%, hsl(var(--primary)) 50%, hsl(var(--accent) / 0.8) 100%);
+  }
+
+  .shadow-maroon {
+    box-shadow: 0 20px 60px -15px hsl(var(--primary) / 0.3);
+  }
+
+  .overlay-maroon {
+    background: linear-gradient(to top, hsl(var(--maroon-deep) / 0.9) 0%, hsl(var(--maroon-deep) / 0.4) 50%, transparent 100%);
+  }
+
+  .overlay-dark {
+    background: linear-gradient(to top, hsl(var(--maroon-deep) / 0.85) 0%, hsl(var(--maroon-deep) / 0.3) 100%);
+  }
+}
