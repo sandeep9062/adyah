@@ -7,10 +7,14 @@ import { Sun, Wind, Flame } from "lucide-react";
 
 const YogaSanctuary = () => {
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-[70px]">
       {/* Hero */}
       <section className="relative h-[80vh] flex items-end overflow-hidden">
-        <img src={cardYoga} alt="Yoga silhouette" className="absolute inset-0 w-full h-full object-cover" />
+        <img
+          src={cardYoga}
+          alt="Yoga silhouette"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
         <div className="absolute inset-0 overlay-maroon opacity-60" />
         <div className="relative z-10 container mx-auto px-6 pb-16">
           <motion.h1
@@ -30,28 +34,49 @@ const YogaSanctuary = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
             <SectionReveal>
               <div className="text-center">
-                <Sun className="mx-auto mb-6 text-accent" size={44} strokeWidth={1} />
-                <h3 className="font-display text-3xl mb-4 text-foreground">Hatha Yoga</h3>
+                <Sun
+                  className="mx-auto mb-6 text-accent"
+                  size={44}
+                  strokeWidth={1}
+                />
+                <h3 className="font-display text-3xl mb-4 text-foreground">
+                  Hatha Yoga
+                </h3>
                 <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                  Build strength, flexibility, and inner balance through mindful postures and breathwork.
+                  Build strength, flexibility, and inner balance through mindful
+                  postures and breathwork.
                 </p>
               </div>
             </SectionReveal>
             <SectionReveal delay={0.15}>
               <div className="text-center">
-                <Wind className="mx-auto mb-6 text-accent" size={44} strokeWidth={1} />
-                <h3 className="font-display text-3xl mb-4 text-foreground">Sahaja Yoga</h3>
+                <Wind
+                  className="mx-auto mb-6 text-accent"
+                  size={44}
+                  strokeWidth={1}
+                />
+                <h3 className="font-display text-3xl mb-4 text-foreground">
+                  Sahaja Yoga
+                </h3>
                 <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                  Awaken your inner energy through meditation and self-realization for lasting inner peace.
+                  Awaken your inner energy through meditation and
+                  self-realization for lasting inner peace.
                 </p>
               </div>
             </SectionReveal>
             <SectionReveal delay={0.3}>
               <div className="text-center">
-                <Flame className="mx-auto mb-6 text-accent" size={44} strokeWidth={1} />
-                <h3 className="font-display text-3xl mb-4 text-foreground">Breath & Flow</h3>
+                <Flame
+                  className="mx-auto mb-6 text-accent"
+                  size={44}
+                  strokeWidth={1}
+                />
+                <h3 className="font-display text-3xl mb-4 text-foreground">
+                  Breath & Flow
+                </h3>
                 <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                  Dynamic sequences connecting breath to movement for vitality and presence.
+                  Dynamic sequences connecting breath to movement for vitality
+                  and presence.
                 </p>
               </div>
             </SectionReveal>
@@ -62,7 +87,11 @@ const YogaSanctuary = () => {
       {/* Meditation Circle */}
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[600px]">
         <div className="relative overflow-hidden">
-          <img src={yogaMeditation} alt="Meditation circle" className="absolute inset-0 w-full h-full object-cover" />
+          <img
+            src={yogaMeditation}
+            alt="Meditation circle"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
         </div>
         <div className="bg-maroon-deep flex items-center p-12 md:p-20">
           <SectionReveal>
@@ -70,7 +99,9 @@ const YogaSanctuary = () => {
               Find Your Circle
             </h2>
             <p className="font-body text-primary-foreground/70 leading-relaxed mb-8">
-              Join our community meditation sessions. In the collective energy of practice, discover a profound stillness that transforms your daily life.
+              Join our community meditation sessions. In the collective energy
+              of practice, discover a profound stillness that transforms your
+              daily life.
             </p>
             <Link
               to="/book"

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
 import cardMentalWellness from "@/assets/card-mental-wellness.jpg";
 import cardMind from "@/assets/card-mind.jpg";
-import cardBreast from "@/assets/card-breast.jpg";
+import cardBreathing from "@/assets/card-breath.jpg";
 import cardYoga from "@/assets/card-yoga.jpg";
 import PathCard from "@/components/PathCard";
 import TestimonialSlider from "@/components/TestimonialSlider";
@@ -16,7 +16,11 @@ const pathCards = [
     to: "/mental-wellness",
   },
   { title: "Mind & Soul", image: cardMind, to: "/mind-soul" },
-  { title: "Specialized Breast Care", image: cardBreast, to: "/breast-care" },
+  {
+    title: "Breathing Techniques",
+    image: cardBreathing,
+    to: "/breathing-techniques",
+  },
   { title: "Yoga Sanctuary", image: cardYoga, to: "/yoga" },
 ];
 

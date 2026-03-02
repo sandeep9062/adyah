@@ -23,7 +23,9 @@ const BookJourney = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Your booking request has been sent. We'll be in touch soon.");
+    toast.success(
+      "Your booking request has been sent. We'll be in touch soon.",
+    );
     setName("");
     setEmail("");
     setService("");
@@ -31,7 +33,7 @@ const BookJourney = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-[70px]">
       {/* Hero */}
       <section className="bg-gradient-maroon py-24 md:py-32">
         <div className="container mx-auto px-6 text-center">
@@ -53,7 +55,9 @@ const BookJourney = () => {
             <SectionReveal>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block font-body text-xs uppercase tracking-widest text-muted-foreground mb-2">Name</label>
+                  <label className="block font-body text-xs uppercase tracking-widest text-muted-foreground mb-2">
+                    Name
+                  </label>
                   <input
                     type="text"
                     value={name}
@@ -63,7 +67,9 @@ const BookJourney = () => {
                   />
                 </div>
                 <div>
-                  <label className="block font-body text-xs uppercase tracking-widest text-muted-foreground mb-2">Email</label>
+                  <label className="block font-body text-xs uppercase tracking-widest text-muted-foreground mb-2">
+                    Email
+                  </label>
                   <input
                     type="email"
                     value={email}
@@ -73,7 +79,9 @@ const BookJourney = () => {
                   />
                 </div>
                 <div>
-                  <label className="block font-body text-xs uppercase tracking-widest text-muted-foreground mb-2">Service</label>
+                  <label className="block font-body text-xs uppercase tracking-widest text-muted-foreground mb-2">
+                    Service
+                  </label>
                   <select
                     value={service}
                     onChange={(e) => setService(e.target.value)}
@@ -82,7 +90,9 @@ const BookJourney = () => {
                   >
                     <option value="">Select a service</option>
                     {services.map((s) => (
-                      <option key={s} value={s}>{s}</option>
+                      <option key={s} value={s}>
+                        {s}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -99,17 +109,28 @@ const BookJourney = () => {
 
             <SectionReveal delay={0.2}>
               <div>
-                <p className="font-body text-xs uppercase tracking-widest text-muted-foreground mb-4">Select a Preferred Date</p>
+                <p className="font-body text-xs uppercase tracking-widest text-muted-foreground mb-4">
+                  Select a Preferred Date
+                </p>
                 <Calendar
                   mode="single"
                   selected={date}
                   onSelect={setDate}
-                  className={cn("rounded-lg border border-border bg-background p-4 pointer-events-auto")}
+                  className={cn(
+                    "rounded-lg border border-border bg-background p-4 pointer-events-auto",
+                  )}
                   disabled={(d) => d < new Date()}
                 />
                 {date && (
                   <p className="mt-4 font-body text-sm text-foreground">
-                    Selected: <span className="text-accent font-medium">{date.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}</span>
+                    Selected:{" "}
+                    <span className="text-accent font-medium">
+                      {date.toLocaleDateString("en-US", {
+                        weekday: "long",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </span>
                   </p>
                 )}
               </div>

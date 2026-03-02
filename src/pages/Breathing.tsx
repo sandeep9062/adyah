@@ -30,7 +30,7 @@ const breathingTechniques = [
 
 const BreathingPage = () => {
   return (
-    <div className="min-h-screen text-black pt-20 bg-warm-cream">
+    <div className="min-h-screen text-black pt-[70px] bg-warm-cream">
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-end overflow-hidden">
         <img
