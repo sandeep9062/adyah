@@ -8,7 +8,7 @@ const EnquiryWidget = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    service: "Physiotherapy",
+    service: "Mental Wellness Service",
     message: "", // Added message state
   });
 
@@ -126,10 +126,10 @@ const EnquiryWidget = () => {
                           setFormData({ ...formData, service: e.target.value })
                         }
                       >
-                        <option>Physiotherapy</option>
+                        <option>Mental Wellness Service</option>
                         <option>Face Reading</option>
                         <option>Past Life Regression</option>
-                        <option>Breast Therapy</option>
+                        <option>Breathing Techniques</option>
                         <option>Sahaja Yoga</option>
                       </select>
                     </div>
@@ -154,7 +154,7 @@ const EnquiryWidget = () => {
                     type="submit"
                     className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 rounded-lg transition-all shadow-lg mt-2"
                   >
-                    GENERATE TOKEN
+                    SUBMIT ENQUIRY
                   </button>
                 </form>
               ) : (
