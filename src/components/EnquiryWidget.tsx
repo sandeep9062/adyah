@@ -82,7 +82,7 @@ const EnquiryWidget = () => {
               {!submitted ? (
                 <form onSubmit={handleSubmit} className="space-y-4 text-left">
                   <h3 className="text-xl font-bold text-slate-900 mb-2">
-                    Service Inquiry
+                    Service Enquiry
                   </h3>
 
                   <div className="space-y-1">
