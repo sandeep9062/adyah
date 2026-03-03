@@ -14,6 +14,9 @@ import NotFound from "./pages/NotFound";
 import WelcomePopup from "./components/EnquiryWidget";
 import BreastCare from "./pages/BreastCare";
 import BreathingTechniques from "./pages/Breathing";
+import LineagePage from "./pages/LineagePage";
+import AuraProfiles from "./pages/AuraProfiles";
+import JournalOfStillness from "./pages/JournalOfStillness";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +38,9 @@ const App = () => (
           <Route path="/mind-soul" element={<MindSoul />} />
           <Route path="/yoga" element={<YogaSanctuary />} />
           <Route path="/book" element={<BookJourney />} />
+          <Route path="/lineage" element={<LineagePage />} />
+          <Route path="/team" element={<AuraProfiles />} />
+          <Route path="/journal" element={<JournalOfStillness />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
