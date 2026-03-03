@@ -110,7 +110,7 @@ const Footer = () => {
                 </div>
                 <div>
                   <p className="text-[10px] uppercase tracking-widest text-white/30 mb-1">
-                    Inquiries
+                    Enquiries
                   </p>
                   <a
                     href="mailto:hello@adyah.com"
@@ -144,7 +144,7 @@ const Footer = () => {
         {/* 2. Refined Bottom Bar */}
         <div className="border-t border-white/5 mt-24 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="font-body text-[10px] uppercase tracking-[0.2em] text-white/30 order-2 md:order-1">
-            © {currentYear} ADYAH INTEGRATED WELLNESS.
+            © {currentYear} ADYAH CONNECTING SOULS.
           </p>
 
           <div className="flex gap-8 order-1 md:order-2">
