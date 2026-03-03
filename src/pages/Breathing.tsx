@@ -207,7 +207,7 @@ const BreathingPage = () => {
               </h2>
               <Link
                 to="/book"
-                className="relative z-10 inline-block px-12 py-5 bg-white text-white font-body text-xs uppercase tracking-[0.2em] rounded-full hover:bg-white hover:text-gray-900 transition-all duration-500 shadow-xl"
+                className="relative z-10 inline-block px-12 py-5 bg-white text-gray-900 font-body text-xs uppercase tracking-[0.2em] rounded-full hover:bg-white hover:text-gray-900 transition-all duration-500 shadow-xl"
               >
                 Join a Breathing Workshop
               </Link>
