@@ -4,19 +4,29 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Amara K.",
-    text: "A place where my body and spirit finally found alignment. The physiotherapy healed my back, and the yoga transformed my mind.",
-    service: "Physiotherapy & Yoga",
+    name: "Julian R.",
+    text: "I came for the mechanics of breath and stayed for the silence. The rhythmic techniques didn't just expand my lung capacity; they expanded my capacity for peace.",
+    service: "Breathing Techniques",
   },
   {
-    name: "David L.",
-    text: "The face reading session was eye-opening. I discovered patterns I'd been blind to for years. Truly life-changing work.",
+    name: "Sienna V.",
+    text: "Adyah's Yoga Sanctuary is far from a standard studio. Every posture felt like a deliberate conversation between my nervous system and my soul.",
+    service: "Hatha & Sahaja Yoga",
+  },
+  {
+    name: "Marcus T.",
+    text: "I was skeptical about Face Reading, but the precision was startling. It was like looking at a map of my own history that I had forgotten how to read.",
     service: "Face Reading",
   },
   {
-    name: "Sarah M.",
-    text: "After my surgery, the breast care rehabilitation gave me back my confidence and my strength. Compassionate, expert care.",
-    service: "Breast Care Rehabilitation",
+    name: "Isabella H.",
+    text: "Past Life Regression was the key that finally unlocked my chronic anxiety. Exploring the subconscious felt like a long-overdue homecoming.",
+    service: "Past Life Regression",
+  },
+  {
+    name: "Dr. Liam N.",
+    text: "The psychological approach here is refreshingly deep. It doesn’t just manage symptoms; it integrates the shadow with the light through clinical rigor.",
+    service: "Psychology",
   },
 ];
 
