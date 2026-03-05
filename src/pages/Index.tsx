@@ -10,6 +10,8 @@ import TestimonialSlider from "@/components/TestimonialSlider";
 import SectionReveal from "@/components/SectionReveal";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { C } from "vitest/dist/chunks/reporters.d.BFLkQcL6.js";
+import ContactCta from "@/components/ContactCta";
 
 const pathCards = [
   {
@@ -167,20 +169,7 @@ const Index = () => {
       </section>
 
       {/* 4. Minimalist Final CTA */}
-      <section className="relative py-40 overflow-hidden bg-[#FDFCFB]">
-        <div className="container mx-auto px-6 text-center">
-          <SectionReveal>
-            <h2 className="font-display text-6xl md:text-8xl font-light mb-12 text-maroon-deep tracking-tighter">
-              Ready to connect?
-            </h2>
-            <Link to="/book" className="inline-block group">
-              <span className="text-xl font-body tracking-[0.2em] uppercase border-b border-maroon-deep pb-2 group-hover:text-red-vibrant group-hover:border-red-vibrant transition-all duration-300">
-                Book Your Session
-              </span>
-            </Link>
-          </SectionReveal>
-        </div>
-      </section>
+      <ContactCta />
     </div>
   );
 };
