@@ -10,22 +10,23 @@ import TestimonialSlider from "@/components/TestimonialSlider";
 import SectionReveal from "@/components/SectionReveal";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { C } from "vitest/dist/chunks/reporters.d.BFLkQcL6.js";
 import ContactCta from "@/components/ContactCta";
 
 const pathCards = [
   {
     title: "Mental Wellness Service",
+    subtitle: "Clinical depth meets inner calm",
     image: cardMentalWellness,
     to: "/mental-wellness",
   },
-  { title: "Mind & Soul", image: cardMind, to: "/mind-soul" },
+  { title: "Mind & Soul", subtitle: "Inner exploration", image: cardMind, to: "/mind-soul" },
   {
     title: "Breathing Techniques",
+    subtitle: "The art of breath",
     image: cardBreathing,
     to: "/breathing-techniques",
   },
-  { title: "Yoga Sanctuary", image: cardYoga, to: "/yoga" },
+  { title: "Yoga Sanctuary", subtitle: "Body and spirit in flow", image: cardYoga, to: "/yoga" },
 ];
 
 const Index = () => {
@@ -50,25 +51,20 @@ const Index = () => {
           <img
             src={heroBg}
             alt="Healing journey"
-            className="w-full h-full object-cover scale-105"
+            className="w-full h-full object-cover scale-105 img-warm"
+            decoding="async"
+            fetchPriority="high"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-maroon-deep/40 via-maroon-deep/20 to-maroon-deep/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-maroon-deep/30 via-maroon-deep/15 to-maroon-deep/50" />
+          <div className="absolute inset-0 hero-grain" aria-hidden />
         </motion.div>
 
         <div className="relative z-10 text-center px-6 max-w-5xl">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="block text-red-vibrant uppercase tracking-[0.4em] text-xs font-bold mb-6"
-          >
-            Welcome to Adyah
-          </motion.span>
-
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display text-5xl md:text-8xl lg:text-9xl font-light text-white leading-tight"
+            className="font-display text-5xl md:text-8xl lg:text-9xl font-light text-white leading-tight tracking-tight"
           >
             Heal. <span className="italic font-serif">Discover.</span> <br />{" "}
             Transform.
@@ -82,13 +78,12 @@ const Index = () => {
           >
             <Link
               to="/book"
-              className="group relative px-12 py-5 overflow-hidden border border-white/30 text-white text-xs uppercase tracking-[0.3em] transition-all"
+              className="group relative inline-block min-h-[44px] px-12 py-5 overflow-hidden rounded-xl border border-white/30 text-white text-xs uppercase tracking-[0.3em] transition-colors duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-maroon-deep active:scale-[0.98]"
             >
-              <span className="relative z-10">Begin Your Journey</span>
-              <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-              <span className="absolute inset-0 z-0 flex items-center justify-center text-maroon-deep opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-bold">
+              <span className="relative z-10 transition-colors duration-300 group-hover:text-maroon-deep">
                 Begin Your Journey
               </span>
+              <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left -z-0" aria-hidden />
             </Link>
           </motion.div>
         </div>
@@ -102,12 +97,12 @@ const Index = () => {
           <span className="text-[10px] uppercase tracking-widest text-white/50">
             Explore
           </span>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-white/60 to-transparent" />
+          <div className="w-px h-12 bg-gradient-to-b from-white/70 via-white/40 to-transparent shadow-[0_0_8px_rgba(255,255,255,0.3)]" />
         </motion.div>
       </section>
 
       {/* 2. Enhanced "Path" Grid */}
-      <section className="py-32 bg-[#FDFCFB] text-maroon-deep relative overflow-hidden">
+      <section className="section-py bg-[#FDFCFB] text-maroon-deep relative overflow-hidden">
         {/* Abstract background element */}
         <div className="absolute top-0 right-0 w-1/3 h-full bg-sand/20 -skew-x-12 translate-x-1/2" />
 
@@ -117,12 +112,12 @@ const Index = () => {
               <span className="text-red-vibrant font-bold tracking-widest text-xs uppercase">
                 Your Sanctuary
               </span>
-              <h2 className="font-display text-5xl md:text-6xl font-light mt-4">
+              <h2 className="font-display text-5xl md:text-6xl font-light text-maroon-deep mt-4">
                 Choose Your <br /> <span className="italic">Healing Path</span>
               </h2>
             </SectionReveal>
             <SectionReveal delay={0.2} className="hidden md:block">
-              <p className="max-w-xs text-sm text-maroon-deep/60 leading-relaxed italic">
+              <p className="max-w-xs text-base text-maroon-deep/60 leading-relaxed italic">
                 Every soul is unique. Select the modality that resonates with
                 your current energy.
               </p>
@@ -131,29 +126,24 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {pathCards.map((card, i) => (
-              <motion.div
-                key={card.title}
-                whileHover={{ y: -10 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <PathCard {...card} index={i} />
-              </motion.div>
+              <PathCard key={card.title} {...card} index={i} />
             ))}
           </div>
         </div>
       </section>
 
       {/* 3. Refined Testimonials with "Editorial" look */}
-      <section className="py-32 bg-maroon-deep text-white">
+      <div className="section-divider" />
+      <section className="section-py bg-maroon-deep text-white">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-4">
               <SectionReveal>
-                <h2 className="font-display text-4xl md:text-5xl font-light mb-6">
+                <h2 className="font-display text-4xl md:text-5xl font-light text-white">
                   Real <br /> Transformation
                 </h2>
-                <div className="w-12 h-[2px] bg-red-vibrant mb-8" />
-                <p className="text-white/60 leading-relaxed font-light">
+                <div className="w-12 h-0.5 bg-red-vibrant mt-4 mb-8" />
+                <p className="text-white/60 text-base leading-relaxed font-light">
                   Hear from those who have walked the path of self-discovery
                   with Adyah.
                 </p>
@@ -169,6 +159,7 @@ const Index = () => {
       </section>
 
       {/* 4. Minimalist Final CTA */}
+      <div className="section-divider" />
       <ContactCta />
     </div>
   );

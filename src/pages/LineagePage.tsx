@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import SectionReveal from "@/components/SectionReveal";
+import HeroCta from "@/components/HeroCta";
 import {
   Microscope,
   Activity,
@@ -14,30 +16,31 @@ const LineagePage = () => {
   return (
     <div className="min-h-screen bg-white selection:bg-accent/10">
       {/* 1. Authority Hero */}
-      <section className="pt-32 pb-20 bg-[#F9F7F2]">
+      <section className="pt-32 pb-20 bg-warm-cream">
         <div className="container mx-auto px-6">
           <SectionReveal direction="up">
             <div className="max-w-4xl">
-              <span className="text-accent font-bold text-[10px] uppercase tracking-[0.4em] mb-6 block">
+              <span className="text-red-vibrant font-bold text-[10px] uppercase tracking-[0.4em] mb-6 block">
                 Evidence-Based Transformation
               </span>
-              <h1 className="font-display text-6xl md:text-8xl font-light text-gray-900 leading-[0.9] mb-8">
+              <h1 className="font-display text-6xl md:text-8xl font-light text-maroon-deep leading-[0.9] mb-4">
                 The Science of <br />
                 <span className="italic font-serif">Deep Healing</span>
               </h1>
-              <p className="text-xl text-gray-600 font-body leading-relaxed max-w-2xl">
+              <p className="text-xl text-maroon-deep/70 font-body leading-relaxed max-w-2xl mb-8">
                 Adyah was founded on the belief that spiritual practices are
                 simply biological technologies we have yet to fully measure. We
                 bridge the gap between the clinical ward and the meditation
                 hall.
               </p>
+              <HeroCta />
             </div>
           </SectionReveal>
         </div>
       </section>
 
       {/* 2. The Clinical Pillars */}
-      <section className="py-32">
+      <section className="section-py">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
             <SectionReveal delay={0.1}>
@@ -158,7 +161,7 @@ const LineagePage = () => {
             </SectionReveal>
 
             <SectionReveal delay={0.2}>
-              <h2 className="font-display text-5xl font-light mb-8 leading-tight">
+              <h2 className="font-display text-5xl font-light text-white mb-8 leading-tight">
                 Beyond the <br />
                 <span className="italic font-serif">Symptom</span>
               </h2>

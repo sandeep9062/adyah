@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import SectionReveal from "@/components/SectionReveal";
+import HeroCta from "@/components/HeroCta";
 import {
   Activity,
   Heart,
@@ -52,10 +53,13 @@ const MentalWellnessService = () => {
         <motion.div style={{ y: yTranslate }} className="absolute inset-0 z-0">
           <img
             src={cardMentalWellness}
-            alt="Mental wellness"
-            className="w-full h-full object-cover brightness-75 scale-110"
+            alt=""
+            className="w-full h-full object-cover scale-105 img-warm"
+            fetchPriority="high"
+            decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-maroon-deep/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-maroon-deep/30 via-maroon-deep/15 to-maroon-deep/50" />
+          <div className="absolute inset-0 hero-grain" aria-hidden />
         </motion.div>
 
         <div className="relative z-10 container mx-auto px-6 text-center">
@@ -66,17 +70,22 @@ const MentalWellnessService = () => {
             <h1 className="font-display text-6xl md:text-9xl font-light text-white tracking-tighter leading-none">
               Mental <br /> <span className="italic font-serif">Wellness</span>
             </h1>
+            <p className="mt-6 text-white/80 font-body max-w-md mx-auto text-sm">
+              Where clinical precision meets inner calm.
+            </p>
+            <HeroCta className="text-white [&_a]:rounded-xl [&_a]:border-white [&_a]:text-white [&_a:hover]:bg-white [&_a:hover]:text-maroon-deep" />
           </SectionReveal>
         </div>
       </section>
 
       {/* 2. Floating Services Grid */}
-      <section className="relative z-20 -mt-24 pb-32">
-        <div className="container mx-auto px-6">
+      <section className="section-py relative z-20 -mt-24 bg-[#FDFCFB] overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-sand/20 -skew-x-12 translate-x-1/2" />
+        <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {wellnessServices.map((t, i) => (
               <SectionReveal key={t.title} delay={i * 0.1}>
-                <div className="group h-full bg-white/80 backdrop-blur-md border border-maroon-deep/5 p-10 hover:bg-maroon-deep hover:text-white transition-all duration-500 rounded-sm">
+                <div className="group h-full bg-white/80 backdrop-blur-md border border-maroon-deep/5 p-10 hover:bg-maroon-deep hover:text-white hover:shadow-card transition-all duration-500 rounded-2xl">
                   <t.icon
                     className="mb-8 text-red-vibrant group-hover:text-white transition-colors"
                     size={32}
@@ -95,31 +104,38 @@ const MentalWellnessService = () => {
         </div>
       </section>
 
-      {/* 3. Mind-Body Integration (Asymmetric Layout) */}
-      <section className="py-24 overflow-hidden">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-            <div className="w-full lg:w-1/2 relative">
+      {/* 3. Mind-Body Integration – maroon section with gradient */}
+      <section
+        className="section-py overflow-hidden text-white relative"
+        style={{
+          background: "linear-gradient(to bottom, hsl(var(--maroon-deep)) 0%, hsl(350 55% 12%) 50%, hsl(350 50% 8%) 100%)",
+        }}
+      >
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-white/[0.04] -skew-x-12 translate-x-1/2" />
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16">
+            <div className="w-full lg:w-1/2 relative max-w-lg lg:max-w-none">
               <SectionReveal direction="right">
-                <div className="relative z-10 rounded-sm overflow-hidden shadow-2xl">
+                <div className="relative z-10 rounded-2xl overflow-hidden shadow-card aspect-[4/5] max-h-[420px] w-full ring-1 ring-white/10">
                   <img
                     src={mindBody}
-                    alt="Mind Body"
-                    className="w-full h-auto"
+                    alt="Integrating mind and body"
+                    className="w-full h-full object-cover object-center img-warm"
+                    loading="lazy"
                   />
                 </div>
-                {/* Decorative background box */}
-                <div className="absolute -bottom-10 -left-10 w-full h-full bg-sand -z-10" />
+                <div className="absolute -bottom-6 -left-6 w-full h-full bg-white/5 rounded-2xl -z-10" />
               </SectionReveal>
             </div>
 
-            <div className="w-full lg:w-1/2">
+            <div className="w-full lg:w-1/2 lg:pt-0">
               <SectionReveal delay={0.2}>
-                <h2 className="font-display text-5xl font-light text-maroon-deep mb-8">
+                <h2 className="font-display text-4xl md:text-5xl font-light text-white">
                   Integrating <br />
-                  <span className="italic font-serif">Mind & Body</span>
+                  <span className="italic font-serif text-red-vibrant">Mind & Body</span>
                 </h2>
-                <p className="text-lg text-maroon-deep/70 mb-10 leading-relaxed font-body">
+                <div className="w-12 h-0.5 bg-red-vibrant mt-4 mb-6" />
+                <p className="text-base text-white/70 mb-10 leading-relaxed font-body">
                   True wellness isn't just the absence of stress—it's the
                   presence of harmony between your neural pathways and your
                   physical sensations.
@@ -136,13 +152,13 @@ const MentalWellnessService = () => {
                       key={item.label}
                       className="flex items-center gap-4 group"
                     >
-                      <div className="p-3 bg-sand group-hover:bg-red-vibrant transition-colors rounded-full">
+                      <div className="p-3 bg-white/10 group-hover:bg-red-vibrant transition-colors rounded-full">
                         <item.icon
                           size={18}
-                          className="text-maroon-deep group-hover:text-white"
+                          className="text-white"
                         />
                       </div>
-                      <span className="text-xs uppercase tracking-widest font-bold">
+                      <span className="text-xs uppercase tracking-widest font-bold text-white">
                         {item.label}
                       </span>
                     </div>
@@ -151,7 +167,7 @@ const MentalWellnessService = () => {
 
                 <Link
                   to="/book"
-                  className="inline-flex items-center gap-4 px-10 py-4 bg-maroon-deep text-white text-xs uppercase tracking-widest hover:bg-red-vibrant transition-all"
+                  className="inline-flex items-center gap-4 px-10 py-4 rounded-xl bg-red-vibrant text-white text-xs uppercase tracking-widest hover:bg-white hover:text-maroon-deep transition-all shadow-[0_4px_20px_rgba(0,0,0,0.2)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-maroon-deep"
                 >
                   Book a Consultation <ArrowRight size={16} />
                 </Link>
@@ -161,42 +177,45 @@ const MentalWellnessService = () => {
         </div>
       </section>
 
-      {/* 4. Conscious Breathing (The Dark Section) */}
-      <section className="py-32 bg-maroon-deep text-white">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col lg:flex-row-reverse items-center gap-20">
-            <div className="w-full lg:w-1/2">
+      {/* 4. Conscious Breathing – white section */}
+      <section className="section-py bg-[#FDFCFB] overflow-hidden relative">
+        <div className="absolute top-0 left-0 w-1/3 h-full bg-sand/20 skew-x-12 -translate-x-1/2" />
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="flex flex-col lg:flex-row-reverse items-start gap-12 lg:gap-16">
+            <div className="w-full lg:w-1/2 relative max-w-lg lg:max-w-none">
               <SectionReveal direction="left">
-                <div className="relative">
+                <div className="relative rounded-2xl overflow-hidden shadow-card aspect-[4/5] max-h-[420px] w-full">
                   <img
                     src={cardBreathing}
                     alt="Breathing"
-                    className="rounded-sm opacity-90 shadow-2xl"
+                    className="w-full h-full object-cover object-center img-warm"
+                    loading="lazy"
                   />
-                  <div className="absolute inset-0 ring-1 ring-white/20 -m-4 rounded-sm pointer-events-none" />
+                  <div className="absolute inset-0 ring-1 ring-maroon-deep/10 -m-4 rounded-2xl pointer-events-none" />
                 </div>
               </SectionReveal>
             </div>
 
-            <div className="w-full lg:w-1/2 text-left">
+            <div className="w-full lg:w-1/2 text-left lg:pt-0">
               <SectionReveal delay={0.3}>
-                <span className="text-red-vibrant font-bold text-xs uppercase tracking-[0.4em] mb-4 block underline underline-offset-8">
+                <span className="text-red-vibrant font-bold text-xs uppercase tracking-[0.4em] mb-4 block">
                   Bio-Hacking Calm
                 </span>
-                <h2 className="font-display text-5xl font-light mb-8">
+                <h2 className="font-display text-4xl md:text-5xl font-light text-maroon-deep">
                   Conscious <br />
                   <span className="italic font-serif">Breathing</span>
                 </h2>
-                <p className="text-white/60 text-lg mb-10 leading-relaxed">
+                <div className="w-12 h-0.5 bg-red-vibrant mt-4 mb-6" />
+                <p className="text-base text-muted-foreground mb-10 leading-relaxed font-body">
                   Our techniques combine ancient pranayama with modern polyvagal
                   theory to reset your nervous system in minutes.
                 </p>
                 <Link
                   to="/breathing-techniques"
-                  className="group flex items-center gap-4 text-sm uppercase tracking-widest font-bold"
+                  className="group inline-flex items-center gap-4 px-6 py-3 rounded-xl border border-maroon-deep/30 text-maroon-deep text-sm uppercase tracking-widest font-bold hover:bg-maroon-deep hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-vibrant focus-visible:ring-offset-2"
                 >
                   Explore the techniques
-                  <span className="w-12 h-[1px] bg-white group-hover:w-20 group-hover:bg-red-vibrant transition-all duration-500" />
+                  <span className="w-12 h-[1px] bg-maroon-deep group-hover:w-20 group-hover:bg-red-vibrant transition-all duration-500" />
                 </Link>
               </SectionReveal>
             </div>

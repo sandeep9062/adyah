@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Phone,
   Mail,
@@ -9,42 +9,68 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 
+// Replace with your social profile URLs when ready
+const SOCIAL_LINKS = [
+  { Icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+  { Icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+  { Icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+] as const;
+
+const FOOTER_NAV = [
+  { name: "Mental Wellness", path: "/mental-wellness" },
+  { name: "Mind & Soul", path: "/mind-soul" },
+  { name: "Breathing Flow", path: "/breathing-techniques" },
+  { name: "Yoga Sanctuary", path: "/yoga" },
+  { name: "Our Team", path: "/team" },
+  { name: "Our Lineage", path: "/lineage" },
+  { name: "Journal of Stillness", path: "/journal" },
+  { name: "Book Journey", path: "/book" },
+] as const;
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
 
   return (
-    <footer className="relative bg-[#0F0506] text-white overflow-hidden border-t border-white/5">
-      {/* 1. Large Background Brand Mark */}
-      <div className="absolute -bottom-10 -right-10 pointer-events-none select-none">
-        <h2 className="text-[15rem] md:text-[25rem] font-display font-bold text-white/[0.02] leading-none tracking-tighter">
+    <footer className="relative bg-footer text-white overflow-hidden border-t border-white/5">
+      {/* Gradient overlay – subtle sunlight from top, like hero */}
+      <div
+        className="absolute inset-0 pointer-events-none bg-gradient-to-b from-white/[0.06] via-transparent to-maroon-deep/40"
+        aria-hidden
+      />
+      {/* Background Brand Mark - smaller so footer feels right-sized */}
+      <div className="absolute -bottom-4 -right-4 pointer-events-none select-none">
+        <h2 className="text-[8rem] md:text-[12rem] font-display font-bold text-white/[0.04] leading-none tracking-tighter">
           ADYAH
         </h2>
       </div>
 
-      <div className="container mx-auto px-6 pt-24 pb-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
+      <div className="container mx-auto px-6 pt-12 pb-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-6">
           {/* Brand Column */}
           <div className="lg:col-span-5">
-            {/* FIXED: Using standard Link for both opening and closing */}
-            <Link to="/" className="inline-block mb-8">
-              <h3 className="font-display text-4xl font-light tracking-tighter">
+            <Link to="/" className="inline-block mb-4">
+              <h3 className="font-display text-2xl font-light tracking-tighter md:text-3xl">
                 ADYAH<span className="text-red-vibrant">.</span>
               </h3>
             </Link>
 
-            <p className="font-body text-white/50 text-base leading-relaxed max-w-sm mb-10">
+            <p className="font-body text-white/50 text-sm leading-relaxed max-w-sm mb-6">
               A sanctuary where clinical precision meets spiritual depth. We
               bridge the gap between physical rehabilitation and the unseen
               journey of the soul.
             </p>
 
-            {/* Social Links */}
+            {/* Social Links - update SOCIAL_LINKS hrefs with your profiles */}
             <div className="flex gap-6">
-              {[Instagram, Facebook, Linkedin].map((Icon, i) => (
+              {SOCIAL_LINKS.map(({ Icon, href, label }) => (
                 <a
-                  key={i}
-                  href="#"
-                  className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-red-vibrant hover:border-red-vibrant transition-all duration-500"
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="min-w-[44px] min-h-[44px] w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-red-vibrant hover:border-red-vibrant transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-vibrant focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   <Icon size={18} />
                 </a>
@@ -54,62 +80,61 @@ const Footer = () => {
 
           {/* Navigation Column */}
           <div className="lg:col-span-3">
-            <h4 className="font-body text-[10px] uppercase tracking-[0.3em] mb-10 text-red-vibrant font-bold">
+            <h4 className="font-body text-[10px] uppercase tracking-[0.3em] mb-4 text-red-vibrant font-bold">
               The Path
             </h4>
-            <nav className="flex flex-col gap-4">
-              {[
-                { name: "Mental Wellness", path: "/mental-wellness" },
-                { name: "Mind & Soul", path: "/mind-soul" },
-                { name: "Breathing Flow", path: "/breathing-techniques" },
-                { name: "Yoga Sanctuary", path: "/yoga" },
-                { name: "Our Team", path: "/team" },
-                { name: "Our Lineage", path: "/lineage" },
-                { name: "Journal of Stillness", path: "/journal" },
-                { name: "Book Journey", path: "/book" },
-              ].map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className="group flex items-center justify-between font-body text-white/60 hover:text-white transition-colors text-sm py-1 border-b border-transparent hover:border-white/10"
-                >
-                  {link.name}
-                  <ArrowUpRight
-                    size={14}
-                    className="opacity-0 group-hover:opacity-100 transition-opacity text-red-vibrant"
-                  />
-                </Link>
-              ))}
+            <nav className="flex flex-col gap-0.5" aria-label="Footer navigation">
+              {FOOTER_NAV.map((link) => {
+                const isActive = location.pathname === link.path;
+                return (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    className={`group flex min-h-[40px] items-center justify-between font-body text-sm py-0.5 border-b border-transparent transition-all duration-300 hover:text-white hover:border-white/10 group-hover:translate-x-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-vibrant focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-sm ${
+                      isActive ? "text-red-vibrant font-medium" : "text-white/60"
+                    }`}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    {link.name}
+                    <ArrowUpRight
+                      size={14}
+                      className={`transition-opacity text-red-vibrant ${
+                        isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                      }`}
+                    />
+                  </Link>
+                );
+              })}
             </nav>
           </div>
 
           {/* Contact Column */}
           <div className="lg:col-span-4">
-            <h4 className="font-body text-[10px] uppercase tracking-[0.3em] mb-10 text-red-vibrant font-bold">
+            <h4 className="font-body text-[10px] uppercase tracking-[0.3em] mb-4 text-red-vibrant font-bold">
               Connect
             </h4>
-            <div className="space-y-8">
-              <div className="flex items-start gap-4 group">
-                <div className="mt-1 p-2 rounded-lg bg-white/5 text-red-vibrant group-hover:bg-red-vibrant group-hover:text-white transition-colors">
-                  <MapPin size={16} />
+            <div className="space-y-4">
+              <div className="flex items-start gap-3 group">
+                <div className="mt-0.5 p-1.5 rounded-md bg-white/5 text-red-vibrant group-hover:bg-red-vibrant group-hover:text-white transition-colors shrink-0">
+                  <MapPin size={14} />
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase tracking-widest text-white/30 mb-1">
+                  <p className="text-[10px] uppercase tracking-widest text-white/30 mb-0.5">
                     Our Space
                   </p>
-                  <p className="text-sm text-white/70 leading-relaxed">
+                  <p className="text-sm text-white/70 leading-snug">
                     123 Healing Way, Wellness City <br />
                     Studio 402, Soul District
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 group">
-                <div className="mt-1 p-2 rounded-lg bg-white/5 text-red-vibrant group-hover:bg-red-vibrant group-hover:text-white transition-colors">
-                  <Mail size={16} />
+              <div className="flex items-start gap-3 group">
+                <div className="mt-0.5 p-1.5 rounded-md bg-white/5 text-red-vibrant group-hover:bg-red-vibrant group-hover:text-white transition-colors shrink-0">
+                  <Mail size={14} />
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase tracking-widest text-white/30 mb-1">
+                  <p className="text-[10px] uppercase tracking-widest text-white/30 mb-0.5">
                     Enquiries
                   </p>
                   <a
@@ -121,12 +146,12 @@ const Footer = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 group">
-                <div className="mt-1 p-2 rounded-lg bg-white/5 text-red-vibrant group-hover:bg-red-vibrant group-hover:text-white transition-colors">
-                  <Phone size={16} />
+              <div className="flex items-start gap-3 group">
+                <div className="mt-0.5 p-1.5 rounded-md bg-white/5 text-red-vibrant group-hover:bg-red-vibrant group-hover:text-white transition-colors shrink-0">
+                  <Phone size={14} />
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase tracking-widest text-white/30 mb-1">
+                  <p className="text-[10px] uppercase tracking-widest text-white/30 mb-0.5">
                     Voice
                   </p>
                   <a
@@ -141,29 +166,29 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* 2. Refined Bottom Bar */}
-        <div className="border-t border-white/5 mt-24 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="font-body text-[10px] uppercase tracking-[0.2em] text-white/30 order-2 md:order-1">
+        {/* 2. Bottom Bar – stands out with curved edges and padding */}
+        <div className="mt-10 flex flex-col md:flex-row justify-between items-center gap-4 rounded-2xl bg-white/[0.08] border border-white/15 px-6 py-5 shadow-[0_4px_24px_rgba(0,0,0,0.15)]">
+          <p className="font-body text-xs uppercase tracking-[0.2em] text-white/70 order-2 md:order-1 px-3 py-2">
             © {currentYear} ADYAH CONNECTING SOULS.
           </p>
 
-          <div className="flex gap-8 order-1 md:order-2">
+          <div className="flex gap-4 order-1 md:order-2">
             <Link
               to="/privacy"
-              className="text-[10px] uppercase tracking-[0.2em] text-white/30 hover:text-white transition-colors"
+              className="min-h-[44px] inline-flex items-center px-4 py-2.5 rounded-xl text-xs uppercase tracking-[0.2em] text-white/70 hover:text-white hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-vibrant focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               Privacy Policy
             </Link>
             <Link
               to="/terms"
-              className="text-[10px] uppercase tracking-[0.2em] text-white/30 hover:text-white transition-colors"
+              className="min-h-[44px] inline-flex items-center px-4 py-2.5 rounded-xl text-xs uppercase tracking-[0.2em] text-white/70 hover:text-white hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-vibrant focus-visible:ring-offset-2 rounded-xl"
             >
               Terms of Service
             </Link>
           </div>
 
-          <div className="order-3 hidden md:block">
-            <p className="text-[10px] uppercase tracking-[0.4em] text-white/10">
+          <div className="order-3 hidden md:block px-3 py-2">
+            <p className="text-xs uppercase tracking-[0.4em] text-white/50">
               Silence Is Sacred
             </p>
           </div>

@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { ReactNode, useRef } from "react";
+import { ReactNode, useRef, useState, useEffect } from "react";
 
 interface SectionRevealProps {
   children: ReactNode;
@@ -18,8 +18,16 @@ const SectionReveal = ({
 }: SectionRevealProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mq.matches);
+    const handler = () => setPrefersReducedMotion(mq.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+  const noMotion = prefersReducedMotion;
 
-  // Mapping directions to initial offsets
   const directions = {
     up: { y: 40, x: 0 },
     down: { y: -40, x: 0 },
@@ -27,6 +35,15 @@ const SectionReveal = ({
     right: { y: 0, x: -40 },
     none: { y: 0, x: 0 },
   };
+
+  const transition = noMotion
+    ? { duration: 0, delay: 0 }
+    : {
+        duration: 1.2,
+        delay,
+        ease: [0.22, 1, 0.36, 1] as const,
+        scale: { type: "spring" as const, damping: 25, stiffness: 100 },
+      };
 
   return (
     <div
@@ -43,7 +60,7 @@ const SectionReveal = ({
           hidden: {
             opacity: 0,
             ...directions[direction],
-            scale: 0.98, // Subtle depth
+            scale: 0.98,
           },
           visible: {
             opacity: 1,
@@ -54,16 +71,7 @@ const SectionReveal = ({
         }}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        transition={{
-          duration: 1.2,
-          delay: delay,
-          ease: [0.22, 1, 0.36, 1], // Custom Cubic Bezier for "Luxury" feel
-          scale: {
-            type: "spring",
-            damping: 25,
-            stiffness: 100,
-          },
-        }}
+        transition={transition}
       >
         {children}
       </motion.div>

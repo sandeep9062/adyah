@@ -52,6 +52,13 @@
     --sidebar-accent-foreground: 30 25% 96%;
     --sidebar-border: 350 40% 22%;
     --sidebar-ring: 0 78% 48%;
+
+    /* Header/footer strip - use for consistent nav/footer background */
+    --header-bg: 350 60% 15%;
+    --footer-bg: 350 60% 12%;
+    /* Section rhythm */
+    --section-py: 6rem;
+    --section-py-lg: 8rem;
   }
 }
 
@@ -107,11 +114,77 @@
     box-shadow: 0 20px 60px -15px hsl(var(--primary) / 0.3);
   }
 
+  /* Soft card shadow for path cards and content */
+  .shadow-card {
+    box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Subtle hero grain overlay */
+  .hero-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  /* Section transition line */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, hsl(var(--red-vibrant) / 0.15), transparent);
+  }
+
+  /* Subtle warm image tone for hero/path images */
+  .img-warm {
+    filter: saturate(0.95) contrast(1.02);
+  }
+
   .overlay-maroon {
     background: linear-gradient(to top, hsl(var(--maroon-deep) / 0.9) 0%, hsl(var(--maroon-deep) / 0.4) 50%, transparent 100%);
   }
 
   .overlay-dark {
     background: linear-gradient(to top, hsl(var(--maroon-deep) / 0.85) 0%, hsl(var(--maroon-deep) / 0.3) 100%);
+  }
+
+  .bg-footer {
+    background-color: hsl(var(--footer-bg));
+  }
+
+  /* Section spacing - use for consistent vertical rhythm */
+  .section-py {
+    @apply py-24 md:py-32;
+  }
+
+  /* Shared H2 section heading - font-display, size, red-vibrant bar */
+  .section-heading {
+    @apply font-display text-4xl md:text-5xl font-light text-maroon-deep;
+  }
+  .section-heading-bar {
+    @apply w-12 h-0.5 bg-red-vibrant mt-4 mb-6;
+  }
+
+  /* Skip to main content link - visible on focus for keyboard/screen reader users */
+  .skip-link {
+    @apply absolute left-6 top-4 z-[100] rounded bg-red-vibrant px-4 py-2 text-sm font-bold text-white opacity-0 outline-none transition-opacity focus:opacity-100 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-maroon-deep;
+  }
+  .skip-link:not(:focus) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }

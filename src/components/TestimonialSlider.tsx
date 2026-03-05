@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -61,12 +61,30 @@ const TestimonialSlider = () => {
     setDirection(-1);
     setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
   };
+  const nextWithPause = () => handleUserNav(next);
+  const prevWithPause = () => handleUserNav(prev);
+  useEffect(() => () => { if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current); }, []);
 
-  // Auto-advance every 5 seconds for a calm pace
+  // Pause auto-advance when tab is hidden or user recently interacted
+  const [isPaused, setIsPaused] = useState(false);
   useEffect(() => {
+    const handleVisibility = () => setIsPaused(document.hidden);
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => document.removeEventListener("visibilitychange", handleVisibility);
+  }, []);
+  useEffect(() => {
+    if (isPaused) return;
     const timer = setInterval(next, 5000);
     return () => clearInterval(timer);
-  }, [current]);
+  }, [current, isPaused]);
+
+  const pauseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const handleUserNav = (fn: () => void) => {
+    setIsPaused(true);
+    if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    fn();
+    pauseTimeoutRef.current = setTimeout(() => setIsPaused(false), 10000);
+  };
 
   return (
     <div className="relative w-full max-w-5xl mx-auto py-12">
@@ -118,10 +136,13 @@ const TestimonialSlider = () => {
             <button
               key={i}
               onClick={() => {
-                setDirection(i > current ? 1 : -1);
-                setCurrent(i);
+                handleUserNav(() => {
+                  setDirection(i > current ? 1 : -1);
+                  setCurrent(i);
+                });
               }}
-              className="group relative py-4"
+              className="group relative min-h-[44px] min-w-[44px] flex items-center justify-center py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-vibrant focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded"
+              aria-label={`Go to testimonial ${i + 1}`}
             >
               <div
                 className={`h-[2px] transition-all duration-700 ease-out ${
@@ -137,15 +158,17 @@ const TestimonialSlider = () => {
         {/* Arrow Buttons */}
         <div className="flex items-center gap-4 order-1 md:order-2">
           <button
-            onClick={prev}
-            className="p-4 rounded-full border border-white/10 text-white/60 hover:text-white hover:border-white/40 transition-all active:scale-95"
+            type="button"
+            onClick={prevWithPause}
+            className="min-h-[44px] min-w-[44px] flex items-center justify-center p-4 rounded-full border border-white/10 text-white/60 hover:text-white hover:border-white/40 transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-vibrant focus-visible:ring-offset-2 focus-visible:ring-offset-maroon-deep"
             aria-label="Previous testimonial"
           >
             <ChevronLeft size={20} strokeWidth={1.5} />
           </button>
           <button
-            onClick={next}
-            className="p-4 rounded-full border border-white/10 text-white/60 hover:text-white hover:border-white/40 transition-all active:scale-95"
+            type="button"
+            onClick={nextWithPause}
+            className="min-h-[44px] min-w-[44px] flex items-center justify-center p-4 rounded-full border border-white/10 text-white/60 hover:text-white hover:border-white/40 transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-vibrant focus-visible:ring-offset-2 focus-visible:ring-offset-maroon-deep"
             aria-label="Next testimonial"
           >
             <ChevronRight size={20} strokeWidth={1.5} />

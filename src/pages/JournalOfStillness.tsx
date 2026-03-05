@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionReveal from "@/components/SectionReveal";
+import HeroCta from "@/components/HeroCta";
 import { ArrowRight, Clock, BookOpen, Sparkles, Brain } from "lucide-react";
 
 const categories = ["All", "Science", "Rituals", "Soul", "Nutrition"];
@@ -61,12 +62,16 @@ const JournalOfStillness = () => {
       <section className="pt-40 pb-20 border-b border-black/5">
         <div className="container mx-auto px-6 text-center">
           <SectionReveal direction="up">
-            <span className="text-accent font-bold text-[10px] uppercase tracking-[0.5em] mb-6 block">
+            <span className="text-red-vibrant font-bold text-[10px] uppercase tracking-[0.5em] mb-6 block">
               Resource Center
             </span>
-            <h1 className="font-display text-7xl md:text-9xl font-light text-gray-900 tracking-tighter mb-12">
+            <h1 className="font-display text-7xl md:text-9xl font-light text-maroon-deep tracking-tighter mb-4">
               Journal of <span className="italic font-serif">Stillness</span>
             </h1>
+            <p className="text-maroon-deep/60 font-body max-w-md mx-auto mb-8">
+              Wisdom and practices for the path.
+            </p>
+            <HeroCta className="mb-12" />
 
             {/* Category Filter */}
             <div className="flex flex-wrap justify-center gap-4 mt-12">
@@ -159,7 +164,7 @@ const JournalOfStillness = () => {
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-2xl mx-auto">
             <Sparkles className="text-red-vibrant mx-auto mb-8" size={32} />
-            <h2 className="font-display text-4xl md:text-6xl font-light mb-8">
+            <h2 className="font-display text-4xl md:text-6xl font-light text-white mb-8">
               Stay in the <span className="italic font-serif">Flow</span>
             </h2>
             <p className="text-white/40 mb-12 leading-relaxed">

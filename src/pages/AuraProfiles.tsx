@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import SectionReveal from "@/components/SectionReveal";
+import HeroCta from "@/components/HeroCta";
 import {
   Star,
   ArrowUpRight,
@@ -51,15 +52,16 @@ const AuraProfiles = () => {
             <span className="text-red-vibrant font-bold text-[10px] uppercase tracking-[0.5em] mb-4 block">
               The Keepers of the Space
             </span>
-            <h1 className="font-display text-6xl md:text-9xl font-light tracking-tighter mb-8">
+            <h1 className="font-display text-6xl md:text-9xl font-light tracking-tighter mb-4">
               Our{" "}
               <span className="italic font-serif text-white/80">Guides</span>
             </h1>
-            <p className="text-white/40 font-body max-w-2xl mx-auto leading-relaxed text-lg">
+            <p className="text-white/40 font-body max-w-2xl mx-auto leading-relaxed text-lg mb-8">
               Adyah practitioners are dual-trained in clinical rigor and
               metaphysical wisdom. They don't just treat; they walk the path
               with you.
             </p>
+            <HeroCta className="text-white [&_a]:border-white [&_a]:text-white [&_a:hover]:bg-white [&_a:hover]:text-maroon-deep" />
           </SectionReveal>
         </div>
 
@@ -105,7 +107,7 @@ const AuraProfiles = () => {
                     </span>
                   </div>
 
-                  <h2 className="font-display text-5xl md:text-7xl font-light mb-4 leading-none">
+                  <h2 className="font-display text-5xl md:text-7xl font-light text-white mb-4 leading-none">
                     {guide.name}
                   </h2>
                   <p className="text-xl font-serif italic text-white/60 mb-8">
@@ -179,7 +181,7 @@ const AuraProfiles = () => {
       {/* 4. Final CTA */}
       <section className="py-40 text-center relative overflow-hidden">
         <SectionReveal>
-          <h2 className="font-display text-5xl md:text-7xl font-light mb-12 leading-tight">
+          <h2 className="font-display text-5xl md:text-7xl font-light text-white mb-12 leading-tight">
             Not sure who is <br />{" "}
             <span className="italic font-serif">the right guide?</span>
           </h2>

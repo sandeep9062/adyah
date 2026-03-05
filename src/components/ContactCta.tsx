@@ -3,18 +3,20 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import SectionReveal from "@/components/SectionReveal";
 
-const ConnectCTA = () => {
+const ContactCta = () => {
   return (
     <section className="relative py-40 md:py-60 overflow-hidden text-maroon-deep bg-white">
-      {/* 1. Kinetic Background Elements */}
+      {/* Top section divider */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-vibrant/10 to-transparent z-10" />
+      {/* Softer ambient glow */}
       <div className="absolute inset-0 z-0">
         <motion.div
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.1, 0.2, 0.1],
+            scale: [1, 1.15, 1],
+            opacity: [0.06, 0.12, 0.06],
           }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-vibrant/20 rounded-full blur-[120px]"
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] md:w-[520px] md:h-[520px] bg-red-vibrant/25 rounded-full blur-[100px]"
         />
       </div>
 
@@ -25,12 +27,15 @@ const ConnectCTA = () => {
             <span className="italic font-serif text-maroon-deep">Connect?</span>
           </h2>
 
-          <Link to="/book" className="group relative inline-block">
+          <Link
+            to="/book"
+            className="group relative inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-vibrant focus-visible:ring-offset-2 rounded-full"
+          >
             {/* The "Portal" Button */}
             <motion.div
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative px-16 py-8 md:px-24 md:py-10 bg-maroon-deep text-white rounded-full overflow-hidden transition-all duration-500 shadow-[0_0_50px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_80px_rgba(217,22,86,0.3)]"
+              whileTap={{ scale: 0.98 }}
+              className="relative px-16 py-8 md:px-24 md:py-10 bg-maroon-deep text-white rounded-full overflow-hidden transition-all duration-500 shadow-[0_8px_32px_rgba(0,0,0,0.12)] group-hover:shadow-[0_12px_48px_rgba(0,0,0,0.15),0_0_40px_rgba(217,22,86,0.2)]"
             >
               {/* Button Hover Slide Effect */}
               <div className="absolute inset-0 bg-red-vibrant translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
@@ -61,4 +66,4 @@ const ConnectCTA = () => {
   );
 };
 
-export default ConnectCTA;
+export default ContactCta;
